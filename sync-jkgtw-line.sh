@@ -9,20 +9,20 @@ echo '# Line'
 echo -n 'hostname = '
 (
     sed -E \
-        -e 's/^URL-REGEX,//' \
-        -e 's/,REJECT(-[A-Z]+)?$//' \
+        -e 's@^URL-REGEX,@@' \
+        -e 's@,REJECT(-[A-Z]+)?$@@' \
         -e 's@^\^https:\\/\\/@@' \
         -e 's@\\/.*@@' \
-        -e 's/\\//g' | \
+        -e 's@\\@@g' | \
         env -i sort -u | xargs
 ) <<< "${JKGTW_LINE_DATA}"
 
 # Output rules.
 (
     sed -E \
-        -e 's/^URL-REGEX,//' \
-        -e 's/,REJECT$/ url reject/' \
-        -e 's/,REJECT-DROP$/ url reject/' \
-        -e 's/,REJECT-TINYGIF$/ url reject-img/' | \
+        -e 's@^URL-REGEX,@@' \
+        -e 's@,REJECT$@ url reject@' \
+        -e 's@,REJECT-DROP$@ url reject@' \
+        -e 's@,REJECT-TINYGIF$@ url reject-img@' | \
         env -i sort
 ) <<< "${JKGTW_LINE_DATA}"
