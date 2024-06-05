@@ -4,8 +4,9 @@ JKGTW_LINEP_URL=https://raw.githubusercontent.com/jkgtw/Surge/master/Modules/LIN
 JKGTW_LINE_DATA=$(curl -s ${JKGTW_LINEP_URL} | grep -E '^URL-REGEX,')
 
 echo '# Line'
-echo -n 'hostname = '
 
+# Output MITM hostnames.
+echo -n 'hostname = '
 (
     sed -E \
         -e 's/^URL-REGEX,//' \
@@ -16,6 +17,7 @@ echo -n 'hostname = '
         env -i sort -u | xargs
 ) <<< "${JKGTW_LINE_DATA}"
 
+# Output rules.
 (
     sed -E \
         -e 's/^URL-REGEX,//' \
