@@ -23,6 +23,6 @@ echo -n 'hostname = '
         -e 's/^URL-REGEX,//' \
         -e 's/,REJECT$/ url reject/' \
         -e 's/,REJECT-DROP$/ url reject/' \
-        -e 's/,REJECT-TINYPIC$/ url reject-img/' \
+        -e 's/,REJECT-TINYGIF$/ url reject-img/' | \
         env -i sort
 ) <<< "${JKGTW_LINE_DATA}"
