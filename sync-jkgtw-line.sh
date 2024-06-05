@@ -10,7 +10,7 @@ echo -n 'hostname = '
 (
     sed -E \
         -e 's/^URL-REGEX,//' \
-        -e 's/,REJECT(-DROP)?$//' \
+        -e 's/,REJECT(-[A-Z]+)?$//' \
         -e 's@^\^https:\\/\\/@@' \
         -e 's@\\/.*@@' \
         -e 's/\\//g' | \
@@ -21,7 +21,8 @@ echo -n 'hostname = '
 (
     sed -E \
         -e 's/^URL-REGEX,//' \
-        -e 's/,REJECT(-DROP)?$//' \
-        -e 's/$/ url reject/' | \
+        -e 's/,REJECT$/ url reject/' \
+        -e 's/,REJECT-DROP$/ url reject/' \
+        -e 's/,REJECT-TINYPIC$/ url reject-img/' \
         env -i sort
 ) <<< "${JKGTW_LINE_DATA}"
