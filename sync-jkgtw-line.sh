@@ -3,7 +3,9 @@
 JKGTW_LINEP_URL=https://raw.githubusercontent.com/jkgtw/Surge/master/Modules/LINE-ADs.sgmodule
 JKGTW_LINE_DATA=$(curl -s ${JKGTW_LINEP_URL} | grep -E '^URL-REGEX,')
 
-echo '# Line'
+echo "# 0.$(date +%Y%m%d.%H%M%S)"
+echo "#"
+echo "# Line"
 
 # Output MITM hostnames.
 echo -n 'hostname = '
