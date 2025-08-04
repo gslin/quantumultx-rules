@@ -13,10 +13,11 @@ echo -n 'hostname = '
     sed -E \
         -e 's@^URL-REGEX,@@' \
         -e 's@,REJECT(-[A-Z]+)?$@@' \
+        -e 's@^"https:\\/\\/(.*)"@\1@' \
         -e 's@^\^https:\\/\\/@@' \
         -e 's@\\/.*@@' \
         -e 's@\\@@g' | \
-        env -i sort -u | xargs
+        env -i sort -u | xargs -d '\n'
 ) <<< "${JKGTW_LINE_DATA}"
 
 # Output rules.
