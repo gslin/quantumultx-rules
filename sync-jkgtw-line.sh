@@ -24,6 +24,7 @@ echo -n 'hostname = '
 (
     sed -E \
         -e 's@^URL-REGEX,@@' \
+        -e 's@^"(.*)"@\1@' \
         -e 's@,REJECT$@ url reject@' \
         -e 's@,REJECT-DROP$@ url reject@' \
         -e 's@,REJECT-TINYGIF$@ url reject-img@' | \
